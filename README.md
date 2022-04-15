@@ -13,6 +13,7 @@ coming to our codes, we have attached 4 python files along with some packages an
                            ↑                                                                   
  servo_control.py  ⇆  main_file.py  →  bot_control.py
                                          
+
 We have used file handling techiniques to implement our code. main_file.py is the main file from where we can access send.py and bot_control.py. All these 3 mentioned
 files were written inside HPS part of DE10 nano. Servo_control file is written inside rasp-pi.
 
