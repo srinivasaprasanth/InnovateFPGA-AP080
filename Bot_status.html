@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<head>
+<title>Rag Picker</title>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js" integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<style>
+
+#date{
+	position:absolute;
+	margin-top:100px;
+	margin-left:200px;
+	border:1px solid gray;
+	background:lightblue;
+	border-radius:5px;
+	width:400px;
+	height:120px;
+}
+
+#gps{
+	position:absolute;
+	margin-top:320px;
+	margin-left:700px;
+	border:1px solid gray;
+	background-color:lightblue;
+	border-radius:5px;
+	width:400px;
+	height:200px;
+}
+#count{
+	position:absolute;
+	margin-top:100px;
+	margin-left:700px;
+	border:1px solid gray;
+	background-color:lightblue;
+	border-radius:5px;
+	width:400px;
+	height:120px;
+}
+#gps-btn{
+	position:absolute;
+	margin-top:400px;
+	margin-left:500px;
+}
+h3{
+	font-weight:bold;
+	font-style:sans-serif;
+	margin-left:0px;
+	letter-spacing:2px;
+	color:blue;
+}
+h1{
+	font-weight:bold;
+	font-style:sans-serif;
+	margin-left:20px;
+	letter-spacing:2px;
+	color:black;
+	font-size:25px;
+	margin-top:20px;
+}
+.navbar-brand{
+	font-weight:bold;
+	color:black;
+}
+#home,#about,#developers,#profiles{
+	color:black;
+	margin-left:10px;
+	font-family:sans-serif;
+}
+#img-set{
+	float:left;
+	position:absolute;
+	width:1280px;
+	height:553px;
+	
+}
+
+</style>
+<script>
+
+window.onload=function(){
+	date();
+	//getLocation();
+	//showPosition();
+	read();
+
+}
+function date(){
+	var today = new Date();
+	var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+	var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+	var dateTime = date+' '+time;
+	document.getElementById("time").innerHTML=dateTime;
+	console.log(dateTime);
+}
+
+const x = document.getElementById("getgps");
+function getLocation() {
+  	if (navigator.geolocation) {
+		const x = document.getElementById("getgps");
+    		navigator.geolocation.getCurrentPosition(showPosition);
+  	} else { 
+		const x = document.getElementById("getgps");
+    		x.innerHTML = "Geolocation is not supported by this browser.";
+  	}
+}
+
+function showPosition(position) {
+	const x = document.getElementById("getgps");
+ 	x.innerHTML = "Latitude: " + position.coords.latitude + 
+  	"<br>Longitude: " + position.coords.longitude;
+}
+
+function read(){
+	const fs=require('fs')
+	fs.readFile('cloud.txt','utf8',(err,data) =>{
+	if(err){
+		console.error(err);
+	}
+	console.log(Data)
+	});
+}
+</script>
+
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">RAG PICKER</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
+          <a class="nav-link active" aria-current="page" href="#" id="home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="#" id="about">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false" id="developers">
+            Developers
+          </a>
+          <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li><a class="dropdown-item" href="#">Pavan</a></li>
+            <li><a class="dropdown-item" href="#">Charan</a></li>
+	    <li><a class="dropdown-item" href="#">Sun</a></li>
+		
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Pransanth</a></li>
+	    <li><a class="dropdown-item" href="#">Hemanth</a></li>
+          </ul>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true" id="profiles">Profiles</a>
+        </li>
+      </ul>
+      <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</nav>
+
+<img src="C:\Users\LENOVO\Desktop\FPGA paper work\ragpicker.jpg" id="img-set">
+<div id="date">
+	<h3 id="currentDate">DATE:</h3>
+	<h1 id="time"></h1>
+</div>
+<div id="count">
+	<h3 id="currentCount">COUNT:</h3>
+</div>
+<div id="gps">
+	<h3 id="currentGps">GPS:</h3>
+	<h1 id="getgps"></h1>
+</div>
+<button onclick="getLocation()" id="gps-btn" type="button" class="btn btn-outline-primary">GET LOCATION</button>
+</body>
+</html>
